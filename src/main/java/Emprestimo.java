@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Emprestimo {
 
@@ -9,9 +8,16 @@ public class Emprestimo {
     private Livro livro;
 
     public void realizarEmprestimo(LocalDate dataEmprestimo, Usuario usuario, Livro livro){
+
+        if( this.livro.getQuantidadeDisponivel() <= 0){
+            System.out.println("Não possui no estoque!!");
+        }
+        this.livro.setQuantidadeDisponivel(this.livro.getQuantidadeDisponivel() -1);
         this.dataEmprestimo = dataEmprestimo;
         this.usuario = usuario;
-        this.livro = livro;
+        this.livro = this.livro;
+
+        this.livro.setQuantidadeDisponivel(this.livro.getQuantidadeDisponivel() -1);
 
         System.out.println("Emprestimo realizado!!!");
 
