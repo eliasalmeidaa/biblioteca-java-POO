@@ -58,6 +58,10 @@
                         emprestimo.devolverLivro(LocalDate.now(), usuario, livro);
                         break;
                     }
+                    case 5:{
+                        System.out.println("Saindo do sistema...");
+                        break;
+                    }
                 }
             }while (opcao !=0);
         }
