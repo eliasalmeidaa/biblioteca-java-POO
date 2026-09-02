@@ -9,26 +9,34 @@ public class Emprestimo {
 
     public void realizarEmprestimo(LocalDate dataEmprestimo, Usuario usuario, Livro livro){
 
-        if( this.livro.getQuantidadeDisponivel() <= 0){
+        if(livro.getQuantidadeDisponivel() <= 0){
             System.out.println("Não possui no estoque!!");
+        }else {
+
+            this.dataEmprestimo = dataEmprestimo;
+            this.usuario = usuario;
+            this.livro = livro;
+
+            this.livro.setQuantidadeDisponivel(this.livro.getQuantidadeDisponivel() - 1);
+
+            System.out.println("Emprestimo realizado!!!");
         }
-        this.livro.setQuantidadeDisponivel(this.livro.getQuantidadeDisponivel() -1);
-        this.dataEmprestimo = dataEmprestimo;
-        this.usuario = usuario;
-        this.livro = this.livro;
-
-        this.livro.setQuantidadeDisponivel(this.livro.getQuantidadeDisponivel() -1);
-
-        System.out.println("Emprestimo realizado!!!");
 
     }
 
     public void devolverLivro(LocalDate dataDevolucao, Usuario usuario, Livro livro){
-        this.dataDevolucao = dataDevolucao;
-        this.usuario = usuario;
-        this.livro = livro;
 
-        System.out.println("Livro de volta a biblioteca!!");
+        if(this.dataEmprestimo == null){
+            System.out.printf("O livro %s nunca foi emprestado\n", livro.getTitulo());
+        }else {
+            this.dataDevolucao = dataDevolucao;
+            this.usuario = usuario;
+            this.livro = livro;
+
+            this.livro.setQuantidadeDisponivel(this.livro.getQuantidadeDisponivel()+1);
+
+            System.out.println("Livro de volta a biblioteca!!");
+        }
     }
 
     public LocalDate getDataEmprestimo() {
